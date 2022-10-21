@@ -1,21 +1,22 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+@Entity
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //здесь и в других полях далее можно не указывать @Column
+    //здесь и далее можно не указывать name = "id", т.к. название поля объекта и столбца таблицы совпадают
     private Long id;
 
     @Column
     private String name;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column
     private Byte age;
 
     public User() {

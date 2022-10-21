@@ -1,5 +1,9 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -25,5 +29,14 @@ public final class Util {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //Hibernate
+    private static SessionFactory sessionFactory = new Configuration()
+            .addAnnotatedClass(User.class)
+            .buildSessionFactory();
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 }
